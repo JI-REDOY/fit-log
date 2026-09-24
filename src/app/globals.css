@@ -1,3 +1,81 @@
 @import "tailwindcss";
 
+@theme {
+  --font-heading: var(--font-oswald), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+}
 
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #121212;
+  --bg-card: #1a1a1a;
+  --bg-card-hover: #222222;
+  --border-color: #262626;
+  --border-hover: #333333;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1a1;
+  --text-muted: #666666;
+  --accent: #CCFF00;
+  --accent-hover: #b8e600;
+  --accent-dark: #8fb300;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  margin: 0;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.bg-accent {
+  background-color: var(--accent);
+  color: #000000;
+}
+
+.bg-accent:hover {
+  background-color: var(--accent-hover);
+}
+
+.card-dark {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.card-dark:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-hover);
+}
+
+.container-fitlog {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container-fitlog {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}

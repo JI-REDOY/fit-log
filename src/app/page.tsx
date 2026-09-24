@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Banner from "@/components/home/Banner";
 
 export default function Home() {
   return (
     <div>
-      <h1>FitLog</h1>
+      <Banner />
     </div>
   );
 }

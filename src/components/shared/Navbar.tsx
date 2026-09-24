@@ -3,11 +3,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { FitLogContexts } from "@/context/FitLogContext";
 
 const Navbar = () => {
     const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const context = useContext(FitLogContexts);
+    const planCount = context?.plan.length ?? 0;
+    const savedCount = context?.saved.length ?? 0;
 
     const isActive = (path: string) => pathname === path;
 
@@ -59,14 +64,14 @@ const Navbar = () => {
                     <Link href="/my-plan" className="flex items-center gap-2">
                         <span className="text-sm font-medium text-white">Plan</span>
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-black">
-                            0
+                            {planCount}
                         </span>
                     </Link>
 
                     <Link href="/my-plan" className="flex items-center gap-2">
                         <span className="text-sm font-medium text-white">Saved</span>
                         <span className="flex h-6 w-6 items-center justify-center rounded-full border border-[var(--text-secondary)] text-xs font-bold text-white">
-                            0
+                            {savedCount}
                         </span>
                     </Link>
                 </div>
@@ -123,7 +128,7 @@ const Navbar = () => {
                             >
                                 <span className="text-sm font-medium text-white">Plan</span>
                                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-black">
-                                    0
+                                    {planCount}
                                 </span>
                             </Link>
 
@@ -134,7 +139,7 @@ const Navbar = () => {
                             >
                                 <span className="text-sm font-medium text-white">Saved</span>
                                 <span className="flex h-6 w-6 items-center justify-center rounded-full border border-[var(--text-secondary)] text-xs font-bold text-white">
-                                    0
+                                    {savedCount}
                                 </span>
                             </Link>
                         </li>

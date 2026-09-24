@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Oswald, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
+import Footer from "@/components/shared/Footer";
 import FitLogContext from "@/context/FitLogContext";
 import ToastContext from "@/context/ToastContext";
 import Toast from "@/components/shared/Toast";
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                     <FitLogContext>
                         <Navbar />
                         <main className="flex-1">{children}</main>
+                        <Footer />
                         <Toast />
                     </FitLogContext>
                 </ToastContext>

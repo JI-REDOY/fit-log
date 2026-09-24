@@ -68,7 +68,7 @@ const Navbar = () => {
                         </span>
                     </Link>
 
-                    <Link href="/my-plan" className="flex items-center gap-2">
+                    <Link href="/my-plan?tab=saved" className="flex items-center gap-2">
                         <span className="text-sm font-medium text-white">Saved</span>
                         <span className="flex h-6 w-6 items-center justify-center rounded-full border border-[var(--text-secondary)] text-xs font-bold text-white">
                             {savedCount}
@@ -133,7 +133,7 @@ const Navbar = () => {
                             </Link>
 
                             <Link
-                                href="/my-plan"
+                                href="/my-plan?tab=saved"
                                 onClick={() => setMenuOpen(false)}
                                 className="flex items-center gap-2"
                             >

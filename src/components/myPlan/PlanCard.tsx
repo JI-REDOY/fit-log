@@ -60,7 +60,7 @@ const PlanCard = ({ workout, variant }: PlanCardProps) => {
         <div className="flex flex-col gap-4 rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] p-4 sm:flex-row sm:items-center sm:gap-5 sm:p-5">
 
             {/* Left — Thumbnail */}
-            <div className="relative h-24 w-full shrink-0 overflow-hidden rounded-lg bg-[var(--bg-secondary)] sm:h-24 sm:w-40">
+            <div className="relative aspect-[2/1] w-full shrink-0 overflow-hidden rounded-lg bg-[var(--bg-secondary)] sm:aspect-auto sm:h-24 sm:w-40">
                 <Image
                     src={workout.image}
                     alt={workout.name}

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { FitLogContexts } from "@/context/FitLogContext";
 import PlanStats from "@/components/myPlan/PlanStats";
 import PlanTabs from "@/components/myPlan/PlanTabs";
@@ -8,11 +9,21 @@ import PlanCard from "@/components/myPlan/PlanCard";
 import EmptyState from "@/components/myPlan/EmptyState";
 import SortDropdown, { SortOption, SortOrder } from "@/components/myPlan/SortDropdown";
 
-const MyPlan = () => {
+const MyPlanContent = () => {
     const context = useContext(FitLogContexts);
-    const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
+    const searchParams = useSearchParams();
+
+    const tabFromUrl = searchParams.get("tab");
+    const initialTab: "plan" | "saved" = tabFromUrl === "saved" ? "saved" : "plan";
+
+    const [activeTab, setActiveTab] = useState<"plan" | "saved">(initialTab);
     const [sortBy, setSortBy] = useState<SortOption>("duration");
     const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
+
+    useEffect(() => {
+        const tab = searchParams.get("tab");
+        setActiveTab(tab === "saved" ? "saved" : "plan");
+    }, [searchParams]);
 
     if (!context) {
         return null;
@@ -61,7 +72,6 @@ const MyPlan = () => {
                 />
             </div>
 
-            {/* Workouts list OR Empty state */}
             {sortedList.length === 0 ? (
                 <EmptyState />
             ) : (
@@ -79,6 +89,14 @@ const MyPlan = () => {
             )}
 
         </section>
+    );
+};
+
+const MyPlan = () => {
+    return (
+        <Suspense fallback={null}>
+            <MyPlanContent />
+        </Suspense>
     );
 };
 

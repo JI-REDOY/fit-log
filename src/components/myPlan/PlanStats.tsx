@@ -1,10 +1,15 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FitLogContexts } from "@/context/FitLogContext";
 
 const PlanStats = () => {
     const context = useContext(FitLogContexts);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     if (!context) {
         return null;
@@ -32,7 +37,7 @@ const PlanStats = () => {
                         className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] px-4 py-5 text-center sm:px-6 sm:py-6"
                     >
                         <p className="font-heading text-2xl font-bold text-accent sm:text-3xl lg:text-4xl">
-                            {stat.value}
+                            {mounted ? stat.value : 0}
                         </p>
                         <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)] sm:text-sm">
                             {stat.label}

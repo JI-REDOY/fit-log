@@ -19,6 +19,12 @@ const MyPlanContent = () => {
     const [activeTab, setActiveTab] = useState<"plan" | "saved">(initialTab);
     const [sortBy, setSortBy] = useState<SortOption>("duration");
     const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
+    const [search, setSearch] = useState("");
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         const tab = searchParams.get("tab");
@@ -33,7 +39,20 @@ const MyPlanContent = () => {
 
     const currentList = activeTab === "plan" ? plan : saved;
 
-    const sortedList = [...currentList].sort((a, b) => {
+    const query = search.toLowerCase().trim();
+
+    const searchedList = currentList.filter((workout) => {
+        if (!query) return true;
+
+        const nameMatch = workout.name.toLowerCase().includes(query);
+        const groupMatch = workout.muscleGroups.some((group) =>
+            group.toLowerCase().includes(query)
+        );
+
+        return nameMatch || groupMatch;
+    });
+
+    const sortedList = [...searchedList].sort((a, b) => {
         let diff = 0;
 
         if (sortBy === "duration") {
@@ -61,18 +80,59 @@ const MyPlanContent = () => {
 
             <PlanStats />
 
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-                <PlanTabs activeTab={activeTab} onChangeTab={setActiveTab} />
-                <SortDropdown
-                    value={sortBy}
-                    order={sortOrder}
-                    onChange={setSortBy}
-                    onOrderChange={setSortOrder}
-                />
+            <div className="mb-6 grid grid-cols-1 gap-3 lg:grid-cols-3 lg:items-center">
+
+                <div className="lg:justify-self-start">
+                    <PlanTabs activeTab={activeTab} onChangeTab={setActiveTab} />
+                </div>
+
+                <div className="flex justify-center">
+                    <div className="relative w-full sm:w-64">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-secondary)]"
+                        >
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+
+                        <input
+                            type="text"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            placeholder="Search..."
+                            className="w-full rounded-full border border-[var(--border-color)] bg-[var(--bg-card)] py-2 pl-11 pr-4 text-xs text-white placeholder:text-[var(--text-muted)] focus:border-[var(--accent)] focus:outline-none sm:text-sm"
+                        />
+                    </div>
+                </div>
+
+                <div className="flex justify-center lg:justify-self-end">
+                    <SortDropdown
+                        value={sortBy}
+                        order={sortOrder}
+                        onChange={setSortBy}
+                        onOrderChange={setSortOrder}
+                    />
+                </div>
+
             </div>
 
-            {sortedList.length === 0 ? (
-                <EmptyState />
+            {mounted && sortedList.length === 0 ? (
+                query ? (
+                    <div className="rounded-xl border border-dashed border-[var(--border-color)] px-6 py-12 text-center">
+                        <p className="text-sm text-[var(--text-secondary)]">
+                            No workouts match your search.
+                        </p>
+                    </div>
+                ) : (
+                    <EmptyState />
+                )
             ) : (
                 <div className="flex flex-col gap-3">
                     {sortedList.map((workout) => {

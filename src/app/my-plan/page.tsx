@@ -69,6 +69,7 @@ const MyPlanContent = () => {
     return (
         <section className="container-fitlog py-10 sm:py-14">
 
+            {/* Header */}
             <div className="mb-8">
                 <h1 className="font-heading text-3xl font-bold uppercase text-white sm:text-4xl lg:text-5xl">
                     MY PLAN
@@ -80,6 +81,7 @@ const MyPlanContent = () => {
 
             <PlanStats />
 
+            {/* Tabs + Search + Sort */}
             <div className="mb-6 grid grid-cols-1 gap-3 lg:grid-cols-3 lg:items-center">
 
                 <div className="lg:justify-self-start">
@@ -123,7 +125,10 @@ const MyPlanContent = () => {
 
             </div>
 
-            {mounted && sortedList.length === 0 ? (
+            {/* Workouts list OR Empty state — only after mount */}
+            {!mounted ? (
+                <div className="min-h-[200px]" />
+            ) : sortedList.length === 0 ? (
                 query ? (
                     <div className="rounded-xl border border-dashed border-[var(--border-color)] px-6 py-12 text-center">
                         <p className="text-sm text-[var(--text-secondary)]">

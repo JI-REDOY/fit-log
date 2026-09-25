@@ -17,7 +17,6 @@ const WorkoutSpecs = ({ workout }: { workout: Workout }) => {
     return (
         <div className="flex flex-col gap-7">
 
-            {/* Key Specs */}
             <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] px-5 py-2 sm:px-6">
 
                 {specs.map((spec) => {
@@ -38,7 +37,6 @@ const WorkoutSpecs = ({ workout }: { workout: Workout }) => {
 
             </div>
 
-            {/* Instructions */}
             <div className="flex flex-col gap-4">
 
                 <h2 className="text-base font-bold uppercase tracking-wide text-white sm:text-lg">
@@ -65,7 +63,6 @@ const WorkoutSpecs = ({ workout }: { workout: Workout }) => {
 
             </div>
 
-            {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3">
                 <AddToPlanButton workout={workout} />
                 <SaveButton workout={workout} />

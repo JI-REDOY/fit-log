@@ -25,7 +25,6 @@ const Navbar = () => {
         <div className="sticky top-0 z-50 border-b border-[var(--border-color)] bg-[var(--bg-primary)]/95 backdrop-blur">
             <div className="container-fitlog flex h-16 items-center justify-between">
 
-                {/* Logo */}
                 <div className="flex items-center">
                     <Link href="/" className="flex items-center gap-2">
                         <Image
@@ -41,7 +40,6 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* Desktop Menu */}
                 <div className="hidden items-center gap-2 lg:flex">
                     <Link
                         href="/"
@@ -64,7 +62,6 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* Desktop Counters */}
                 <div className="hidden items-center gap-6 lg:flex">
                     <Link href="/my-plan" className="flex items-center gap-2">
                         <span className="text-sm font-medium text-white">Plan</span>
@@ -81,7 +78,6 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* Mobile Menu */}
                 <div className="lg:hidden">
                     <button
                         onClick={() => setMenuOpen(!menuOpen)}
@@ -93,7 +89,6 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Mobile Dropdown */}
             {menuOpen && (
                 <div className="border-t border-[var(--border-color)] bg-[var(--bg-primary)] lg:hidden">
                     <ul className="container-fitlog flex flex-col gap-4 py-4">

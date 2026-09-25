@@ -7,7 +7,6 @@ const Banner = () => {
       <div className="card-dark overflow-hidden rounded-2xl px-6 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-12">
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
 
-          {/* Left Content */}
           <div className="flex flex-col gap-5">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
               WORKOUT LIBRARY
@@ -34,7 +33,6 @@ const Banner = () => {
             </div>
           </div>
 
-          {/* Right Image */}
           <div className="flex justify-center lg:justify-end">
             <Image
               src="/banner.png"

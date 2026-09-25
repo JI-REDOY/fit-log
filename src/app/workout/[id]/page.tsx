@@ -45,7 +45,6 @@ const WorkoutDetails = async ({ params }: { params: Promise<{ id: string }> }) =
 
             <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
 
-                {/* Left — Image */}
                 <div className="relative aspect-[2/3] w-full overflow-hidden rounded-2xl bg-[var(--bg-secondary)]">
                     <Image
                         src={workout.image}
@@ -57,7 +56,6 @@ const WorkoutDetails = async ({ params }: { params: Promise<{ id: string }> }) =
                     />
                 </div>
 
-                {/* Right — Content */}
                 <div className="flex flex-col gap-5">
                     <p className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
                         Workout Details

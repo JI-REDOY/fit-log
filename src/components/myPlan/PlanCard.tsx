@@ -59,7 +59,6 @@ const PlanCard = ({ workout, variant }: PlanCardProps) => {
     return (
         <div className="flex flex-col gap-4 rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] p-4 sm:flex-row sm:items-center sm:gap-5 sm:p-5">
 
-            {/* Left — Thumbnail */}
             <div className="relative aspect-[2/1] w-full shrink-0 overflow-hidden rounded-lg bg-[var(--bg-secondary)] sm:aspect-auto sm:h-24 sm:w-40">
                 <Image
                     src={workout.image}
@@ -70,7 +69,6 @@ const PlanCard = ({ workout, variant }: PlanCardProps) => {
                 />
             </div>
 
-            {/* Middle — Info */}
             <div className="flex flex-1 flex-col gap-1.5">
 
                 <h3 className="font-heading text-base font-bold uppercase text-white sm:text-lg">
@@ -136,7 +134,6 @@ const PlanCard = ({ workout, variant }: PlanCardProps) => {
 
             </div>
 
-            {/* Right — Actions */}
             <div className="flex flex-wrap items-center gap-2 sm:shrink-0">
 
                 <Link

@@ -5,7 +5,6 @@ const EmptyState = () => {
     return (
         <div className="flex flex-col items-center justify-center gap-5 rounded-xl border border-dashed border-[var(--border-color)] bg-transparent px-6 py-16 text-center sm:py-20">
 
-            {/* Icon */}
             <div className="flex h-16 w-16 items-center justify-center rounded-full border border-dashed border-[var(--border-color)] bg-transparent">
 
                 <svg
@@ -24,17 +23,14 @@ const EmptyState = () => {
 
             </div>
 
-            {/* Title */}
             <h3 className="font-heading text-xl font-bold uppercase text-white sm:text-2xl">
                 NOTHING HERE YET
             </h3>
 
-            {/* Subtitle */}
             <p className="max-w-md text-sm text-[var(--text-secondary)]">
                 Browse the library and add a lift to get today moving.
             </p>
 
-            {/* CTA Button */}
             <Link
                 href="/"
                 className="mt-2 inline-flex items-center rounded-full bg-accent px-6 py-3 text-sm font-bold uppercase tracking-wider text-black transition-opacity hover:opacity-90"

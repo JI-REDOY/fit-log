@@ -10,7 +10,6 @@ const WorkoutCard = ({ workout }: { workout: Workout }) => {
             className="card-dark group block overflow-hidden"
         >
 
-            {/* Image */}
             <div className="relative aspect-video w-full overflow-hidden bg-[var(--bg-secondary)]">
 
                 <Image
@@ -23,10 +22,8 @@ const WorkoutCard = ({ workout }: { workout: Workout }) => {
 
             </div>
 
-            {/* Content */}
             <div className="flex flex-col gap-3 p-4">
 
-                {/* Category Tags */}
                 <div className="flex flex-wrap gap-1.5">
                     {workout.muscleGroups.map((group) => {
                         return (
@@ -40,17 +37,14 @@ const WorkoutCard = ({ workout }: { workout: Workout }) => {
                     })}
                 </div>
 
-                {/* Workout Name */}
                 <h3 className="font-heading text-lg font-bold uppercase text-white transition-colors duration-300 group-hover:text-accent">
                     {workout.name}
                 </h3>
 
-                {/* Equipment */}
                 <p className="text-xs text-[var(--text-secondary)]">
                     {workout.equipment}
                 </p>
 
-                {/* Stats Row */}
                 <div className="mt-1 flex items-center justify-between border-t border-[var(--border-color)] pt-3 text-xs text-[var(--text-secondary)]">
 
                     <div className="flex items-center gap-1.5">

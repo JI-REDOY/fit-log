@@ -50,7 +50,6 @@ const MyPlanContent = () => {
     return (
         <section className="container-fitlog py-10 sm:py-14">
 
-            {/* Header */}
             <div className="mb-8">
                 <h1 className="font-heading text-3xl font-bold uppercase text-white sm:text-4xl lg:text-5xl">
                     MY PLAN

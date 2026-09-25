@@ -26,9 +26,22 @@ const Banner = () => {
             <div>
               <Link
                 href="#library"
-                className="inline-flex items-center rounded-md bg-accent px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-opacity hover:opacity-90 sm:text-sm"
+                className="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-opacity hover:opacity-90 sm:text-sm"
               >
-                BROWSE WORKOUTS
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-3.5 w-3.5 sm:h-4 sm:w-4"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <polyline points="19 12 12 19 5 12" />
+                </svg>
+                <span>BROWSE WORKOUTS</span>
               </Link>
             </div>
           </div>

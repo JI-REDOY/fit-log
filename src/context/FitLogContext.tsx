@@ -8,33 +8,41 @@ interface FitLogContextType {
     setPlan: React.Dispatch<React.SetStateAction<Workout[]>>;
     saved: Workout[];
     setSaved: React.Dispatch<React.SetStateAction<Workout[]>>;
+    isLoaded: boolean;
 }
 
 export const FitLogContexts = createContext<FitLogContextType | null>(null);
 
+const getInitialPlan = (): Workout[] => {
+    if (typeof window === "undefined") return [];
+    const stored = localStorage.getItem("fitlog_plan");
+    return stored ? JSON.parse(stored) : [];
+};
+
+const getInitialSaved = (): Workout[] => {
+    if (typeof window === "undefined") return [];
+    const stored = localStorage.getItem("fitlog_saved");
+    return stored ? JSON.parse(stored) : [];
+};
+
 const FitLogContext = ({ children }: { children: React.ReactNode }) => {
-    const [plan, setPlan] = useState<Workout[]>([]);
-    const [saved, setSaved] = useState<Workout[]>([]);
+    const [plan, setPlan] = useState<Workout[]>(getInitialPlan);
+    const [saved, setSaved] = useState<Workout[]>(getInitialSaved);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        const storedPlan = localStorage.getItem("fitlog_plan");
-        const storedSaved = localStorage.getItem("fitlog_saved");
-
-        if (storedPlan) {
-            setPlan(JSON.parse(storedPlan));
-        }
-        if (storedSaved) {
-            setSaved(JSON.parse(storedSaved));
-        }
+        setIsLoaded(true);
     }, []);
 
     useEffect(() => {
+        if (!isLoaded) return;
         localStorage.setItem("fitlog_plan", JSON.stringify(plan));
-    }, [plan]);
+    }, [plan, isLoaded]);
 
     useEffect(() => {
+        if (!isLoaded) return;
         localStorage.setItem("fitlog_saved", JSON.stringify(saved));
-    }, [saved]);
+    }, [saved, isLoaded]);
 
     return (
         <FitLogContexts.Provider
@@ -43,6 +51,7 @@ const FitLogContext = ({ children }: { children: React.ReactNode }) => {
                 setPlan,
                 saved,
                 setSaved,
+                isLoaded,
             }}
         >
             {children}

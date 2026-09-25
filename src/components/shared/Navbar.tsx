@@ -3,18 +3,23 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { FitLogContexts } from "@/context/FitLogContext";
 
 const Navbar = () => {
     const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     const context = useContext(FitLogContexts);
     const planCount = context?.plan.length ?? 0;
     const savedCount = context?.saved.length ?? 0;
 
     const isActive = (path: string) => pathname === path;
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     return (
         <div className="sticky top-0 z-50 border-b border-[var(--border-color)] bg-[var(--bg-primary)]/95 backdrop-blur">
@@ -63,15 +68,15 @@ const Navbar = () => {
                 <div className="hidden items-center gap-6 lg:flex">
                     <Link href="/my-plan" className="flex items-center gap-2">
                         <span className="text-sm font-medium text-white">Plan</span>
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-black">
-                            {planCount}
+                        <span className={`flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-black transition-opacity duration-200 ${mounted ? "opacity-100" : "opacity-0"}`}>
+                            {mounted ? planCount : 0}
                         </span>
                     </Link>
 
                     <Link href="/my-plan?tab=saved" className="flex items-center gap-2">
                         <span className="text-sm font-medium text-white">Saved</span>
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full border border-[var(--text-secondary)] text-xs font-bold text-white">
-                            {savedCount}
+                        <span className={`flex h-6 w-6 items-center justify-center rounded-full border border-[var(--text-secondary)] text-xs font-bold text-white transition-opacity duration-200 ${mounted ? "opacity-100" : "opacity-0"}`}>
+                            {mounted ? savedCount : 0}
                         </span>
                     </Link>
                 </div>
@@ -127,8 +132,8 @@ const Navbar = () => {
                                 className="flex items-center gap-2"
                             >
                                 <span className="text-sm font-medium text-white">Plan</span>
-                                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-black">
-                                    {planCount}
+                                <span className={`flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-black transition-opacity duration-200 ${mounted ? "opacity-100" : "opacity-0"}`}>
+                                    {mounted ? planCount : 0}
                                 </span>
                             </Link>
 
@@ -138,8 +143,8 @@ const Navbar = () => {
                                 className="flex items-center gap-2"
                             >
                                 <span className="text-sm font-medium text-white">Saved</span>
-                                <span className="flex h-6 w-6 items-center justify-center rounded-full border border-[var(--text-secondary)] text-xs font-bold text-white">
-                                    {savedCount}
+                                <span className={`flex h-6 w-6 items-center justify-center rounded-full border border-[var(--text-secondary)] text-xs font-bold text-white transition-opacity duration-200 ${mounted ? "opacity-100" : "opacity-0"}`}>
+                                    {mounted ? savedCount : 0}
                                 </span>
                             </Link>
                         </li>
